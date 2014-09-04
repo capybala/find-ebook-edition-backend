@@ -1,6 +1,8 @@
 find-ebook-edition-backend
 ==========================
 
+Backend server of [find-ebook-edition](https://github.com/capybala/find-ebook-edition).
+
 
 Requirements
 ------------
