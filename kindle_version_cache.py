@@ -1,5 +1,5 @@
 #coding: utf-8
-from __future__ import unicode_literals
+from __future__ import unicode_literals, print_function
 
 import json
 import pylibmc
@@ -59,4 +59,4 @@ if __name__ == '__main__':
         'hoge': {'asin': 'foo', 'title': 'FOO!'},
         'fuga': None,
         })
-    print cache.get_cached_items(['hoge', 'fuga', 'hige'])
+    print(cache.get_cached_items(['hoge', 'fuga', 'hige']))

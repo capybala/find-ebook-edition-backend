@@ -1,5 +1,5 @@
 #coding: utf-8
-from __future__ import unicode_literals
+from __future__ import unicode_literals, print_function
 
 import re
 import os
@@ -47,7 +47,7 @@ def kindle_versions():
 
         items = finder.find_kindle_version(asins)
         status = 200
-    except Exception, ex:
+    except Exception as ex:
         app.logger.error('Error in calling API. %s: %s' % (
             ex.__class__.__name__, ex))
         app.logger.error(traceback.format_exc())
