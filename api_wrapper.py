@@ -1,5 +1,5 @@
 #coding: utf-8
-from __future__ import unicode_literals
+from __future__ import unicode_literals, print_function
 
 import logging
 
@@ -42,18 +42,18 @@ class AmazonWrapper(object):
         response = self.api.ItemLookup(ItemId=asins_text,
                                        ResponseGroup='AlternateVersions')
         root = _parse_response(response)
-        #print etree.tostring(response, pretty_print = True)
+        #print(etree.tostring(response, pretty_print = True))
 
         alternate_asins = {}
         for item in root.Items.Item:
             asin = item.ASIN.text
             alternate_asin = None
 
-            #print item.ItemAttributes.Title.text.encode('utf-8')
+            #print(item.ItemAttributes.Title.text.encode('utf-8'))
             if hasattr(item, 'AlternateVersions'):
                 for alternate_version in item.AlternateVersions.AlternateVersion:
                     if alternate_version.Binding in KINDLE_BINDINGS:
-                        # Kindle版が存在する場合
+                        # When Kindle edtion exists
                         alternate_asin = to_str(alternate_version.ASIN.text)
                         break
 
@@ -71,7 +71,7 @@ class AmazonWrapper(object):
         logger.debug('Caling API for Small. asins: %s' % asins_text)
         response = self.api.ItemLookup(ItemId=asins_text, ResponseGroup='Small')
         root = _parse_response(response)
-        #print etree.tostring(response, pretty_print = True)
+        #print(etree.tostring(response, pretty_print = True))
 
         items = {}
         for item in root.Items.Item:
