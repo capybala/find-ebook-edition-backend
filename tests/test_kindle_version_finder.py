@@ -27,7 +27,7 @@ class TestKindleVersionFinder(TestCase):
 
         self.assertEqual(items[0]['asin'], '4274068854')
         self.assertEqual(items[0]['kindle']['asin'], 'B009RO80XY')
-        self.assertTrue(items[0]['kindle']['url'].startswith('http://www.amazon.co.jp/%E3%81%99%E3%81%94%E3%81%84Haskell%E3%81%9F%E3%81%AE%E3%81%97%E3%81%8F%E5%AD%A6%E3%81%BC%E3%81%86%EF%BC%81-ebook'))
+        self.assertTrue(items[0]['kindle']['url'].startswith('http://www.amazon.co.jp/%E3%81%99%E3%81%94%E3%81%84Haskell%E3%81%9F%E3%81%AE%E3%81%97%E3%81%8F%E5%AD%A6%E3%81%BC%E3%81%86%EF%BC%81-Miran-Lipovaca-ebook/dp/B009RO80XY'))
         self.assertTrue('orangain-22' in items[0]['kindle']['url'])
         self.assertEqual(items[0]['kindle']['title'], u"すごいHaskellたのしく学ぼう！")
 
