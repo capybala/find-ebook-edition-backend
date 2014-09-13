@@ -10,9 +10,10 @@ from utils import to_str
 
 
 KINDLE_BINDINGS = (
-    'Kindle版',        # jp, cn
+    'Kindle版',        # jp
     'Kindle Edition',  # us, uk, ca, de
     'Format Kindle',   # fr
+    'Kindle电子书',    # cn
 )
 # Confirmed by http://www.amazon.*/dp/B005UQLJ4A/
 
