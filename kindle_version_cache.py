@@ -26,7 +26,7 @@ class KindleVersionCache(object):
         keys = [to_bytes(asin) for asin in asins]  # key must be bytes
         cached_json_items = self.cache.get_multi(keys, key_prefix=self.key_prefix)
         cached_items = {}
-        for key, value in cached_json_items.iteritems():
+        for key, value in cached_json_items.items():
             # Although pylibmc automatically pickle dicts or objects,
             # JSON is more portable.
             cached_items[to_str(key)] = json.loads(value)  # convert key into (Py3) str
@@ -46,7 +46,7 @@ class KindleVersionCache(object):
             }
         """
         json_items = {}
-        for key, value in items.iteritems():
+        for key, value in items.items():
             json_items[to_bytes(key)] = json.dumps(value)  # key must be bytes
 
         self.cache.set_multi(json_items, time=self.cache_seconds, key_prefix=self.key_prefix)

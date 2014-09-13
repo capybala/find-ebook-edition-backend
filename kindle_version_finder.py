@@ -76,7 +76,7 @@ class KindleVersionFinder(object):
         if kindle_asins:
             kindle_items = self.api.get_item_details(kindle_asins)
 
-            for asin, kindle_asin in map_asin_to_kindle_asin.iteritems():
+            for asin, kindle_asin in map_asin_to_kindle_asin.items():
                 response_items[asin] = kindle_items[kindle_asin]
 
         return response_items
