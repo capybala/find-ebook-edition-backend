@@ -1,13 +1,15 @@
 find-ebook-edition-backend
 ==========================
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 Backend server of [find-ebook-edition](https://github.com/capybala/find-ebook-edition).
 
 
 Requirements
 ------------
 
-- Python 2.7 & Virtualenv
+- Python 3.4 & Virtualenv
 - Memcached
 - Foreman
 
@@ -19,6 +21,7 @@ Requirements
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
+$ pip install -r dev-requirements.txt
 ```
 
 
@@ -45,6 +48,10 @@ $ foreman start
 
 4. Run tests
 ------------
+
+```
+$ memcached
+```
 
 ```
 $ foreman run nosetests
