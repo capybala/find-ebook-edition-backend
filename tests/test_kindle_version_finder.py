@@ -1,7 +1,6 @@
 #coding: utf-8
 
 import os
-import logging
 from unittest import TestCase
 
 from kindle_version_finder import KindleVersionFinder
@@ -10,6 +9,7 @@ ACCESS_KEY = os.environ.get('AMAZON_ACCESS_KEY')
 SECRET_KEY = os.environ.get('AMAZON_SECRET_KEY')
 ASSOCIATE_TAG = os.environ.get('AMAZON_ASSOCIATE_TAG')
 
+
 class TestKindleVersionFinder(TestCase):
 
     def test_find_kindle_version(self):
@@ -17,10 +17,10 @@ class TestKindleVersionFinder(TestCase):
         finder = KindleVersionFinder(ACCESS_KEY, SECRET_KEY, ASSOCIATE_TAG, 'jp')
 
         asins = [
-            '4274068854', # a book with kindle version
-            '4873115736', # a book without kindle version
-            'B009TPQVLY', # kindle book
-            'B0095D9XS8', # not a book
+            '4274068854',  # a book with kindle version
+            '4873115736',  # a book without kindle version
+            'B009TPQVLY',  # kindle book
+            'B0095D9XS8',  # not a book
         ]
 
         items = finder.find_kindle_version(asins)
