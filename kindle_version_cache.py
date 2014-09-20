@@ -29,7 +29,8 @@ class KindleVersionCache(object):
         for key, value in cached_json_items.items():
             # Although pylibmc automatically pickle dicts or objects,
             # JSON is more portable.
-            cached_items[to_str(key)] = json.loads(value)  # convert key into (Py3) str
+            # Convert key and value into (Py3) str
+            cached_items[to_str(key)] = json.loads(to_str(value))
 
         return cached_items
 
