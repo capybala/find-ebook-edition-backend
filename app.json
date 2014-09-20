@@ -1,0 +1,19 @@
+{
+  "name": "Find eBook Edition Backend",
+  "description": "Backend server of find-ebook-edition",
+  "repository": "https://github.com/capybala/find-ebook-edition-backend",
+  "env": {
+    "AMAZON_ACCESS_KEY": {
+      "description": "Access Key for Amazon Product Advertising API",
+    },
+    "AMAZON_SECRET_KEY": {
+      "description": "Secret Key for Amazon Product Advertising API",
+    },
+    "AMAZON_ASSOCIATE_TAG": {
+      "description": "Associate Tag for Amazon Product Advertising API",
+    }
+  },
+  "addons": [
+    "memcachier:dev"
+  ]
+}
