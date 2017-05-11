@@ -28,7 +28,7 @@ class AmazonWrapper(object):
 
     def __init__(self, access_key, secret_key, associate_tag, region):
         self.api = bottlenose.Amazon(access_key, secret_key, associate_tag,
-                                     Region=region.upper())
+                                     Region=region.upper(), MaxQPS=0.9)
 
     def get_alternate_versions(self, asins):
         """
