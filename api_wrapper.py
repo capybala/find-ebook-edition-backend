@@ -2,6 +2,7 @@
 from __future__ import unicode_literals, print_function
 
 import logging
+import time
 
 import bottlenose
 from lxml import etree, objectify
@@ -28,7 +29,9 @@ class AmazonWrapper(object):
 
     def __init__(self, access_key, secret_key, associate_tag, region):
         self.api = bottlenose.Amazon(access_key, secret_key, associate_tag,
-                                     Region=region.upper(), MaxQPS=0.9)
+                                     Region=region.upper(), MaxQPS=0.9, ErrorHandler=self._handle_error)
+        self.last_error_url = None
+        self.last_error_count = 1
 
     def get_alternate_versions(self, asins):
         """
@@ -85,6 +88,25 @@ class AmazonWrapper(object):
 
         return items
 
+    def _handle_error(self, err):
+        exception = err['exception']
+        url = err['api_url']
+        if getattr(exception, 'code', None) == 503:
+            if self.last_error_url != url:
+                self.last_error_url = url
+                self.last_error_count = 1
+            else:
+                self.last_error_count += 1
+
+            if self.last_error_count >= 3:
+                logger.error('Too many retries.')
+                return False
+
+            wait = 2 ** self.last_error_count
+            logger.info('503 Service Unavailable. Retrying in %d seconds', wait)
+
+            time.sleep(wait)
+            return True
 
 def _parse_response(response_text):
     root = objectify.fromstring(response_text)
@@ -98,3 +120,5 @@ def _parse_response(response_text):
             etree.tostring(root, pretty_print=True)))
 
     return root
+
+
