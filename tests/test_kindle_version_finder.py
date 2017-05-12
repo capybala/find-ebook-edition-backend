@@ -20,28 +20,20 @@ class TestKindleVersionFinder(TestCase):
             '4274068854',  # a book with kindle version
             '4873115736',  # a book without kindle version
             'B009TPQVLY',  # kindle book
-            'B0095D9XS8',  # not a book
+            'B00O9N37EK',  # not a book
         ]
 
         items = finder.find_kindle_version(asins)
 
         self.assertEqual(items[0]['asin'], '4274068854')
         self.assertEqual(items[0]['kindle']['asin'], 'B009RO80XY')
-        self.assertTrue(items[0]['kindle']['url'].startswith('http://www.amazon.co.jp/%E3%81%99%E3%81%94%E3%81%84Haskell%E3%81%9F%E3%81%AE%E3%81%97%E3%81%8F%E5%AD%A6%E3%81%BC%E3%81%86%EF%BC%81-Miran-Lipovaca-ebook/dp/B009RO80XY'))
-        self.assertTrue('orangain-22' in items[0]['kindle']['url'])
-        self.assertEqual(items[0]['kindle']['title'], u"すごいHaskellたのしく学ぼう！")
+        self.assertTrue(items[0]['kindle']['url'].startswith('https://www.amazon.co.jp/%E3%81%99%E3%81%94%E3%81%84Haskell%E3%81%9F%E3%81%AE%E3%81%97%E3%81%8F%E5%AD%A6%E3%81%BC%E3%81%86%EF%BC%81-Miran-Lipovaca-ebook/dp/B009RO80XY'))
+        self.assertTrue(ASSOCIATE_TAG in items[0]['kindle']['url'])
+        self.assertEqual(items[0]['kindle']['title'], "すごいHaskellたのしく学ぼう！")
 
         self.assertEqual(items[1], {"asin": "4873115736", "kindle": None})
         self.assertEqual(items[2], {"asin": "B009TPQVLY", "kindle": None})
-        self.assertEqual(items[3], {"asin": "B0095D9XS8", "kindle": None})
-
-    def test_jp(self):
-        finder = KindleVersionFinder(ACCESS_KEY, SECRET_KEY, ASSOCIATE_TAG, 'jp')
-        asins = ['0470747994']
-        items = finder.find_kindle_version(asins)
-
-        self.assertEqual(items[0]['kindle']['asin'], 'B005UQLJ4A')
-        self.assertTrue(items[0]['kindle']['url'].startswith('http://www.amazon.co.jp/'))
+        self.assertEqual(items[3], {"asin": "B00O9N37EK", "kindle": None})
 
     def test_us(self):
         finder = KindleVersionFinder(ACCESS_KEY, SECRET_KEY, ASSOCIATE_TAG, 'us')
@@ -49,7 +41,7 @@ class TestKindleVersionFinder(TestCase):
         items = finder.find_kindle_version(asins)
 
         self.assertEqual(items[0]['kindle']['asin'], 'B005UQLJ4A')
-        self.assertTrue(items[0]['kindle']['url'].startswith('http://www.amazon.com/'))
+        self.assertTrue(items[0]['kindle']['url'].startswith('https://www.amazon.com/'))
 
     def test_uk(self):
         finder = KindleVersionFinder(ACCESS_KEY, SECRET_KEY, ASSOCIATE_TAG, 'uk')
@@ -57,7 +49,7 @@ class TestKindleVersionFinder(TestCase):
         items = finder.find_kindle_version(asins)
 
         self.assertEqual(items[0]['kindle']['asin'], 'B005UQLJ4A')
-        self.assertTrue(items[0]['kindle']['url'].startswith('http://www.amazon.co.uk/'))
+        self.assertTrue(items[0]['kindle']['url'].startswith('https://www.amazon.co.uk/'))
 
     def test_de(self):
         finder = KindleVersionFinder(ACCESS_KEY, SECRET_KEY, ASSOCIATE_TAG, 'de')
@@ -65,7 +57,7 @@ class TestKindleVersionFinder(TestCase):
         items = finder.find_kindle_version(asins)
 
         self.assertEqual(items[0]['kindle']['asin'], 'B005UQLJ4A')
-        self.assertTrue(items[0]['kindle']['url'].startswith('http://www.amazon.de/'))
+        self.assertTrue(items[0]['kindle']['url'].startswith('https://www.amazon.de/'))
 
     def test_cn(self):
         finder = KindleVersionFinder(ACCESS_KEY, SECRET_KEY, ASSOCIATE_TAG, 'cn')
@@ -73,7 +65,7 @@ class TestKindleVersionFinder(TestCase):
         items = finder.find_kindle_version(asins)
 
         self.assertEqual(items[0]['kindle']['asin'], 'B00AATSWWE')
-        self.assertTrue(items[0]['kindle']['url'].startswith('http://www.amazon.cn/'))
+        self.assertTrue(items[0]['kindle']['url'].startswith('https://www.amazon.cn/'))
 
     def test_ca(self):
         finder = KindleVersionFinder(ACCESS_KEY, SECRET_KEY, ASSOCIATE_TAG, 'ca')
@@ -81,4 +73,4 @@ class TestKindleVersionFinder(TestCase):
         items = finder.find_kindle_version(asins)
 
         self.assertEqual(items[0]['kindle']['asin'], 'B005UQLJ4A')
-        self.assertTrue(items[0]['kindle']['url'].startswith('http://www.amazon.ca/'))
+        self.assertTrue(items[0]['kindle']['url'].startswith('https://www.amazon.ca/'))
