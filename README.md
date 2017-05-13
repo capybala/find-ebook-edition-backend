@@ -1,21 +1,18 @@
-find-ebook-edition-backend
-==========================
+# find-ebook-edition-backend
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 Backend server of [find-ebook-edition](https://github.com/capybala/find-ebook-edition).
 
 
-Requirements
-------------
+## Requirements
 
 - Python 3.6
 - Memcached
 - Foreman
 
 
-1. Install packages
--------------------
+## 1. Install packages
 
 ```
 $ python3 -m venv venv
@@ -25,8 +22,7 @@ $ . venv/bin/activate
 ```
 
 
-2. Set up env vars
-------------------
+## 2. Set up env vars
 
 Put `.env`
 
@@ -38,16 +34,14 @@ AMAZON_ASSOCIATE_TAG=(Your associate tag)
 ```
 
 
-3. Start server
----------------
+## 3. Start server
 
 ```
 $ foreman start
 ```
 
 
-4. Run tests
-------------
+## 4. Run tests
 
 ```
 $ memcached
@@ -58,16 +52,14 @@ $ foreman run nosetests
 ```
 
 
-5. Configure Heroku
--------------------
+## 5. Configure Heroku
 
 1. Create an app
 2. Add MemCachier add-on
 3. Configure env vars
 
 
-6. Deploy to Heroku
--------------------
+## 6. Deploy to Heroku
 
 ```
 $ git push heroku master
