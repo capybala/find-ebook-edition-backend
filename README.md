@@ -9,7 +9,7 @@ Backend server of [find-ebook-edition](https://github.com/capybala/find-ebook-ed
 Requirements
 ------------
 
-- Python 3.4 & Virtualenv
+- Python 3.6
 - Memcached
 - Foreman
 
@@ -18,10 +18,10 @@ Requirements
 -------------------
 
 ```
-$ virtualenv venv
+$ python3 -m venv venv
 $ . venv/bin/activate
-$ pip install -r requirements.txt
-$ pip install -r dev-requirements.txt
+(venv) $ pip install -r requirements.txt
+(venv) $ pip install -r dev-requirements.txt
 ```
 
 
